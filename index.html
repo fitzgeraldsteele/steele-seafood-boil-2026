@@ -32,6 +32,16 @@
 <!-- Wipe transition element -->
 <div id="wipe"></div>
 
+<!-- Quick nav (revealed after intro) -->
+<nav id="quick-nav" aria-label="Section navigation">
+  <a href="#hero" data-sec="hero">🦀<span>Top</span></a>
+  <a href="#menu" data-sec="menu">🍤<span>Menu</span></a>
+  <a href="#assignments" data-sec="assignments">📋<span>Brings</span></a>
+  <a href="#schedule" data-sec="schedule">🕒<span>Plan</span></a>
+  <a href="#playlist" data-sec="playlist">🎶<span>Music</span></a>
+  <a href="#footer" data-sec="footer">📍<span>Info</span></a>
+</nav>
+
 <!-- Confetti canvas -->
 <canvas id="confetti"></canvas>
 
@@ -185,7 +195,14 @@
         </ul>
       </div>
     </div>
-    <div id="spotify-embed"></div>
+    <div id="spotify-embed">
+      <p class="sp-label">🎧 PRESS PLAY · DALE PLAY</p>
+      <iframe title="4th of July Seafood Boil playlist" style="border-radius:12px"
+        src="https://open.spotify.com/embed/playlist/15O99hz2ndbTOPN6Ne8RtI?utm_source=generator&theme=0"
+        width="100%" height="352" frameborder="0"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"></iframe>
+    </div>
   </section>
 
   <!-- SECTION 6: FOOTER -->

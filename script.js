@@ -55,6 +55,7 @@
   function finishIntro() {
     overlay.classList.add("hidden");
     document.body.style.overflow = "";
+    showQuickNav();
     setTimeout(function () { if (overlay && overlay.parentNode) overlay.style.display = "none"; }, 800);
   }
 
@@ -191,5 +192,51 @@
     void wipe.offsetWidth; // reflow
     wipe.classList.add("go");
   };
+
+  /* ============================================================
+     QUICK NAV — reveal after intro, smooth scroll, active highlight
+     ============================================================ */
+  var nav = document.getElementById("quick-nav");
+  var navLinks = nav ? Array.prototype.slice.call(nav.querySelectorAll("a")) : [];
+
+  function showQuickNav() {
+    if (nav) nav.classList.add("show");
+  }
+  // If the intro is skipped/absent (e.g. reduced motion path already calls finishIntro),
+  // ensure nav still appears once the page is interactive.
+  if (!startBtn && nav) showQuickNav();
+
+  if (nav) {
+    navLinks.forEach(function (link) {
+      link.addEventListener("click", function (ev) {
+        var id = link.getAttribute("href");
+        if (!id || id.charAt(0) !== "#") return;
+        var target = document.querySelector(id);
+        if (!target) return;
+        ev.preventDefault();
+        target.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block: "start" });
+        if (!prefersReduced) burstConfetti(40);
+      });
+    });
+
+    /* Active-section highlight */
+    if ("IntersectionObserver" in window) {
+      var navMap = {};
+      navLinks.forEach(function (l) { navMap[l.getAttribute("data-sec")] = l; });
+      var navObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            navLinks.forEach(function (l) { l.classList.remove("active"); });
+            var act = navMap[e.target.id];
+            if (act) act.classList.add("active");
+          }
+        });
+      }, { threshold: 0.5 });
+      ["hero", "menu", "assignments", "schedule", "playlist", "footer"].forEach(function (sid) {
+        var el = document.getElementById(sid);
+        if (el) navObserver.observe(el);
+      });
+    }
+  }
 
 })();
