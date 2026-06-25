@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>4th of July Seafood Boil — Steele House 🦀🇺🇸</title>
+<meta name="description" content="Steele House 4th of July Seafood Boil — July 4, 2026, 3 PM. Bilingual party site." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/png" href="assets/crab-mascot.png" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- Intro overlay (tap to start) -->
+<div id="intro-overlay">
+  <div class="intro-inner">
+    <img src="assets/crab-mascot.png" alt="Patriotic crab mascot" class="intro-crab" />
+    <h1 class="intro-title">4TH OF JULY<br/>SEAFOOD BOIL</h1>
+    <p class="intro-sub">STEELE HOUSE · JULY 4, 2026 · 3 PM</p>
+    <button id="start-btn">🎆 ENTER THE PARTY 🎆<br/><span>Toca para entrar</span></button>
+  </div>
+</div>
+
+<!-- Animation stage for intro sequence -->
+<div id="anim-stage" aria-hidden="true">
+  <img src="assets/fighter-jets.png" alt="" class="anim-jets" />
+  <img src="assets/screaming-eagle.png" alt="" class="anim-eagle" />
+</div>
+
+<!-- Wipe transition element -->
+<div id="wipe"></div>
+
+<!-- Confetti canvas -->
+<canvas id="confetti"></canvas>
+
+<!-- Audio -->
+<audio id="snd-eagle" src="assets/eagle-screech.mp3" preload="auto"></audio>
+<audio id="snd-jet" src="assets/jet-flyover.mp3" preload="auto"></audio>
+<audio id="snd-firework" src="assets/firework-pop.mp3" preload="auto"></audio>
+
+<main id="main-content">
+
+  <!-- SECTION 1: HERO -->
+  <section id="hero" class="section section-hero">
+    <div class="bunting"></div>
+    <div class="hero-content">
+      <img src="assets/screaming-eagle.png" alt="Screaming bald eagle" class="hero-eagle" />
+      <img src="assets/crab-mascot.png" alt="Crab in flag sunglasses" class="hero-crab" />
+      <h1 class="hero-title">4TH OF JULY<br/><span class="big">SEAFOOD BOIL</span></h1>
+      <p class="hero-title-es">FIESTA DEL 4 DE JULIO · HERVIDO DE MARISCOS</p>
+      <div class="hero-details">
+        <span>🏠 STEELE HOUSE</span>
+        <span>📅 JULY 4, 2026</span>
+        <span>🕒 3:00 PM</span>
+      </div>
+      <div class="scroll-indicator">▼ SCROLL ▼<br/><small>Desliza hacia abajo</small></div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: MENU -->
+  <section id="menu" class="section section-menu">
+    <div class="bunting"></div>
+    <h2 class="section-title">THE MENU <span class="es">· EL MENÚ</span></h2>
+    <div class="menu-grid">
+      <div class="menu-card main-event">
+        <h3>🦀 THE MAIN EVENT <span class="es">· EL PLATO FUERTE</span></h3>
+        <p class="boil-name">SEAFOOD BOIL <span class="es">/ Hervido de Mariscos</span></p>
+        <ul>
+          <li>Crab Legs <span class="es">· Patas de Cangrejo</span></li>
+          <li>Shrimp <span class="es">· Camarones</span></li>
+          <li>Andouille Sausage <span class="es">· Salchicha Andouille</span></li>
+          <li>Corn on the Cob <span class="es">· Mazorca</span></li>
+          <li>Potatoes <span class="es">· Papas</span></li>
+          <li>Onions, Garlic, Lemons & Old Bay <span class="es">· Cebolla, Ajo, Limón y Old Bay</span></li>
+        </ul>
+      </div>
+      <div class="menu-card">
+        <h3>🫓 SIDES <span class="es">· ACOMPAÑANTES</span></h3>
+        <ul>
+          <li>Arepas con Queso</li>
+          <li>Crusty Bread <span class="es">· Pan Crujiente</span></li>
+        </ul>
+        <h3>🌶️ SAUCES <span class="es">· SALSAS</span></h3>
+        <ul>
+          <li>Melted Butter <span class="es">· Mantequilla Derretida</span></li>
+          <li>Cocktail Sauce <span class="es">· Salsa Cóctel</span></li>
+          <li>Ají Colombiano 🇨🇴</li>
+          <li>Hot Sauce <span class="es">· Salsa Picante</span></li>
+        </ul>
+      </div>
+      <div class="menu-card">
+        <h3>🍫 DESSERT <span class="es">· POSTRE</span></h3>
+        <ul>
+          <li>Ghirardelli Brownies</li>
+          <li>Vanilla Ice Cream <span class="es">· Helado de Vainilla</span></li>
+          <li>Cherries 🍒 <span class="es">· Cerezas</span></li>
+        </ul>
+        <h3>🍹 DRINKS <span class="es">· BEBIDAS</span></h3>
+        <ul>
+          <li>🍉 Watermelon Margarita <span class="es">· Margarita de Sandía</span> <em>(signature!)</em></li>
+          <li>🥥 Lulada <span class="es">(sin alcohol)</span></li>
+          <li>BYOB for anything else <span class="es">· Trae tu bebida favorita</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="kid-note">🧒 Plain portions set aside for the little ones before seasoning · <span class="es">Porciones sin condimentar para los niños</span></p>
+    <img src="assets/watermelon-marg.png" alt="Watermelon margarita" class="float-marg" />
+  </section>
+
+  <!-- SECTION 3: ASSIGNMENTS -->
+  <section id="assignments" class="section section-assignments">
+    <div class="bunting"></div>
+    <h2 class="section-title">WHO BRINGS WHAT <span class="es">· ¿QUIÉN TRAE QUÉ?</span></h2>
+    <div class="cards">
+      <div class="family-card">
+        <div class="emoji">🦀</div>
+        <h3>THE STEELES</h3>
+        <p>Crab legs (6–7 lbs) + all the veg, sides, dessert & drinks — the works!</p>
+        <p class="es">Patas de cangrejo + verduras, acompañantes, postre y bebidas</p>
+      </div>
+      <div class="family-card">
+        <div class="emoji">🦐</div>
+        <h3>THE SALCEDOS</h3>
+        <p>Shrimp (shell-on, deveined, 16–20 ct, 5–6 lbs) + decor + dessert bowls</p>
+        <p class="es">Camarones + decoración + platos para postre</p>
+      </div>
+      <div class="family-card">
+        <div class="emoji">🌭</div>
+        <h3>THE MARTINEZ</h3>
+        <p>Andouille sausage (3.5 lbs)</p>
+        <p class="es">Salchicha andouille (3.5 lbs)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: SCHEDULE -->
+  <section id="schedule" class="section section-schedule">
+    <div class="bunting"></div>
+    <h2 class="section-title">SCHEDULE <span class="es">· HORARIO</span></h2>
+    <div class="timeline">
+      <div class="t-item"><span class="t-time">3:00 PM</span><span class="t-desc">Guests arrive, margs + lulada ready, arepas out 🍹 <br/><span class="es">Llegada, bebidas listas, arepas</span></span></div>
+      <div class="t-item"><span class="t-time">3:00–3:30</span><span class="t-desc">Pool, yard games, mingle while the pot heats up 🏊 <br/><span class="es">Piscina, juegos, a socializar</span></span></div>
+      <div class="t-item"><span class="t-time">~3:30</span><span class="t-desc">Potatoes & corn in the pot (longest cook) 🥔🌽 <br/><span class="es">Papas y mazorca al fuego</span></span></div>
+      <div class="t-item"><span class="t-time">~3:45</span><span class="t-desc">Sausage goes in 🌭 <br/><span class="es">Entra la salchicha</span></span></div>
+      <div class="t-item"><span class="t-time">~3:55</span><span class="t-desc">Shrimp & crab legs in last (3–5 min only!) 🦐🦀 <br/><span class="es">Camarones y cangrejo al final</span></span></div>
+      <div class="t-item dump"><span class="t-time">~4:00</span><span class="t-desc">🦀🌽🦐 THE DUMP! Dig in! <br/><span class="es">¡A COMER!</span></span></div>
+      <div class="t-item"><span class="t-time">~5:00</span><span class="t-desc">Brownies & ice cream 🍫🍦 <br/><span class="es">Brownies y helado</span></span></div>
+      <div class="t-item"><span class="t-time">~6:30</span><span class="t-desc">Sparklers! 🎇✨ <br/><span class="es">¡Bengalas!</span></span></div>
+      <div class="t-item"><span class="t-time">7:00 PM</span><span class="t-desc">Wind down 🌙 <br/><span class="es">Hora de descansar</span></span></div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: PLAYLIST -->
+  <section id="playlist" class="section section-playlist">
+    <div class="bunting"></div>
+    <h2 class="section-title">THE MUSIC <span class="es">· LA MÚSICA</span> 🎶</h2>
+    <div class="playlist-grid">
+      <div class="pl-col">
+        <h3>🇺🇸 Classic 4th / BBQ</h3>
+        <ul>
+          <li>Born in the U.S.A. — Springsteen</li>
+          <li>American Girl — Tom Petty</li>
+          <li>Party in the U.S.A. — Miley Cyrus</li>
+          <li>Sweet Home Alabama — Lynyrd Skynyrd</li>
+        </ul>
+      </div>
+      <div class="pl-col">
+        <h3>🇨🇴 Colombian / Latin</h3>
+        <ul>
+          <li>⭐ Suavemente — Elvis Crespo</li>
+          <li>La Tierra del Olvido — Carlos Vives</li>
+          <li>Hips Don't Lie — Shakira</li>
+          <li>La Bicicleta — Carlos Vives & Shakira</li>
+        </ul>
+      </div>
+      <div class="pl-col">
+        <h3>🎆 Party Vibes</h3>
+        <ul>
+          <li>September — Earth, Wind & Fire</li>
+          <li>Uptown Funk — Bruno Mars</li>
+          <li>Can't Stop the Feeling — JT</li>
+          <li>Good as Hell — Lizzo</li>
+        </ul>
+      </div>
+    </div>
+    <div id="spotify-embed"></div>
+  </section>
+
+  <!-- SECTION 6: FOOTER -->
+  <footer id="footer" class="section section-footer">
+    <div class="bunting"></div>
+    <img src="assets/crab-mascot.png" alt="Crab mascot" class="footer-crab" />
+    <h2>Happy 4th! 🇺🇸🇨🇴🎆</h2>
+    <p class="big-es">¡Feliz 4 de Julio!</p>
+    <p class="addr">14307 266th Pl NE, Duvall, WA</p>
+    <button id="replay-btn">🔊 Replay the eagle 🦅</button>
+  </footer>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

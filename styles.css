@@ -1,0 +1,322 @@
+/* ============================================================
+   4TH OF JULY SEAFOOD BOIL — Steele House
+   Maximalist Patriotic Americana. More is more. 🦅🇺🇸
+   ============================================================ */
+
+:root {
+  --navy: #001529;
+  --navy-2: #002868;
+  --red: #bf0a30;
+  --red-bright: #e3122f;
+  --white: #ffffff;
+  --gold: #ffd700;
+  --gold-deep: #d4af37;
+  /* Colombian accents */
+  --co-yellow: #fcd116;
+  --co-blue: #003893;
+  --co-red: #ce1126;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--navy);
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+h1, h2, h3 { font-family: 'Anton', 'Bebas Neue', sans-serif; letter-spacing: 1px; }
+
+.es {
+  font-weight: 600;
+  color: var(--gold);
+  font-style: italic;
+  font-size: 0.82em;
+}
+
+/* ---------- Gold metallic text ---------- */
+.section-title, .hero-title, .intro-title {
+  background: linear-gradient(180deg, #fff6c4 0%, var(--gold) 45%, var(--gold-deep) 70%, #fff6c4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 0 rgba(0,0,0,0.25);
+  filter: drop-shadow(0 3px 4px rgba(0,0,0,0.5));
+}
+
+/* ============================================================
+   INTRO OVERLAY
+   ============================================================ */
+#intro-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: radial-gradient(circle at 50% 40%, var(--navy-2), var(--navy) 70%);
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  transition: opacity 0.8s ease;
+}
+#intro-overlay.hidden { opacity: 0; pointer-events: none; }
+.intro-inner { padding: 24px; }
+.intro-crab { width: min(46vw, 230px); filter: drop-shadow(0 0 30px rgba(255,215,0,.4)); animation: bob 2.4s ease-in-out infinite; }
+.intro-title { font-size: clamp(2rem, 9vw, 5rem); line-height: 0.95; margin: 12px 0 6px; }
+.intro-sub { font-family: 'Bebas Neue'; letter-spacing: 3px; color: var(--white); font-size: clamp(1rem,3.4vw,1.4rem); margin-bottom: 26px; }
+#start-btn {
+  font-family: 'Anton', sans-serif; font-size: clamp(1.1rem, 4vw, 1.6rem);
+  background: linear-gradient(180deg, var(--red-bright), var(--red));
+  color: #fff; border: 3px solid var(--gold); border-radius: 14px;
+  padding: 16px 30px; cursor: pointer; letter-spacing: 1px;
+  box-shadow: 0 0 28px rgba(191,10,48,.7), inset 0 0 12px rgba(255,255,255,.2);
+  transition: transform .15s, box-shadow .15s; animation: pulseBtn 1.8s infinite;
+}
+#start-btn span { display: block; font-family: 'Inter'; font-weight: 600; font-size: 0.62em; color: var(--gold); margin-top: 4px; }
+#start-btn:hover { transform: scale(1.06); box-shadow: 0 0 40px rgba(255,215,0,.8); }
+
+/* ============================================================
+   INTRO ANIMATION STAGE
+   ============================================================ */
+#anim-stage { position: fixed; inset: 0; z-index: 999; pointer-events: none; overflow: hidden; display: none; }
+#anim-stage.run { display: block; }
+.anim-jets {
+  position: absolute; top: 22%; left: -40%; width: min(70vw, 600px);
+  filter: drop-shadow(0 8px 14px rgba(0,0,0,.5));
+}
+.anim-stage-jets-fly { animation: jetsFly 1.6s ease-in forwards; }
+.anim-eagle {
+  position: absolute; top: 50%; left: 50%; width: 0; opacity: 0;
+  transform: translate(-50%, -50%);
+}
+.anim-stage-eagle-in { animation: eagleIn 1.1s ease-out forwards; }
+
+/* ============================================================
+   WIPE TRANSITION
+   ============================================================ */
+#wipe {
+  position: fixed; inset: 0; z-index: 900; pointer-events: none;
+  transform: translateX(-100%);
+  background: repeating-linear-gradient(90deg,
+    var(--red) 0 8%, var(--white) 8% 16%, var(--navy-2) 16% 24%);
+}
+#wipe.go { animation: wipeAcross 0.9s ease-in-out; }
+
+/* ============================================================
+   CONFETTI
+   ============================================================ */
+#confetti { position: fixed; inset: 0; z-index: 5; pointer-events: none; }
+
+/* ============================================================
+   BUNTING (top of every section)
+   ============================================================ */
+.bunting {
+  position: absolute; top: 0; left: 0; right: 0; height: 34px;
+  background:
+    repeating-linear-gradient(90deg,
+      var(--red) 0 40px, var(--white) 40px 80px, var(--navy-2) 80px 120px);
+  -webkit-mask: radial-gradient(circle at 30px 0, transparent 0 28px, #000 28px) repeat-x;
+  mask: radial-gradient(circle at 30px 0, transparent 0 28px, #000 28px) repeat-x;
+  -webkit-mask-size: 60px 34px; mask-size: 60px 34px;
+  opacity: 0.9; z-index: 3;
+}
+
+/* ============================================================
+   SECTIONS (shared)
+   ============================================================ */
+.section {
+  position: relative; min-height: 100vh; width: 100%;
+  padding: 80px 20px 60px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; overflow: hidden;
+}
+.section-title {
+  font-size: clamp(1.8rem, 6.5vw, 4rem); text-align: center; margin-bottom: 34px;
+  text-transform: uppercase; max-width: 100%; overflow-wrap: break-word;
+}
+.section-title .es { white-space: nowrap; }
+
+/* Alternating section backgrounds */
+.section-hero      { background: radial-gradient(circle at 50% 30%, var(--navy-2), var(--navy) 75%); }
+.section-menu      { background: linear-gradient(160deg, var(--navy), #0a1f3a); }
+.section-assignments{ background: linear-gradient(160deg, #0a1f3a, var(--navy)); }
+.section-schedule  { background: linear-gradient(160deg, var(--navy), #0a1f3a); }
+.section-playlist  { background: linear-gradient(160deg, #0a1f3a, var(--navy)); }
+.section-footer    { background: radial-gradient(circle at 50% 80%, var(--navy-2), var(--navy) 75%); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero-content { text-align: center; position: relative; z-index: 4; max-width: 900px; display: flex; flex-direction: column; align-items: center; }
+.hero-eagle {
+  width: min(70vw, 380px); margin-bottom: -8%;
+  filter: drop-shadow(0 10px 24px rgba(0,0,0,.55));
+  animation: floaty 4s ease-in-out infinite;
+}
+.hero-crab {
+  width: min(40vw, 190px); margin: 0 auto -2%; display: block;
+  filter: drop-shadow(0 0 26px rgba(255,215,0,.4));
+  animation: bob 2.8s ease-in-out infinite; position: relative; z-index: 5;
+}
+.hero-title { font-size: clamp(2rem, 9vw, 5rem); line-height: 0.9; margin-top: 8px; }
+.hero-title .big { font-size: 1.12em; display: inline-block; }
+.hero-title-es { font-family: 'Bebas Neue'; letter-spacing: 2px; color: var(--gold); font-size: clamp(1rem, 3.6vw, 1.6rem); margin: 10px 0 22px; }
+.hero-details {
+  display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+  font-family: 'Bebas Neue'; font-size: clamp(1.1rem, 4vw, 1.7rem); letter-spacing: 1px;
+}
+.hero-details span {
+  background: rgba(191,10,48,.85); border: 2px solid var(--gold);
+  padding: 6px 16px; border-radius: 999px; box-shadow: 0 4px 14px rgba(0,0,0,.4);
+}
+.scroll-indicator {
+  margin-top: 34px; font-family: 'Bebas Neue'; letter-spacing: 3px; color: var(--white);
+  animation: bounce 1.8s infinite; font-size: 1.1rem;
+}
+.scroll-indicator small { color: var(--gold); letter-spacing: 1px; }
+
+/* ============================================================
+   MENU
+   ============================================================ */
+.menu-grid {
+  display: grid; gap: 22px; width: 100%; max-width: 1080px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  position: relative; z-index: 4;
+}
+.menu-card {
+  background: rgba(0, 25, 60, .72); border: 3px solid var(--gold);
+  border-radius: 16px; padding: 22px 22px 26px;
+  box-shadow: 0 8px 26px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.06);
+  backdrop-filter: blur(2px);
+}
+.menu-card.main-event { border-color: var(--red-bright); box-shadow: 0 0 28px rgba(191,10,48,.45); }
+.menu-card h3 { color: var(--gold); font-size: 1.35rem; margin: 6px 0 10px; }
+.menu-card .boil-name { font-family: 'Bebas Neue'; font-size: 1.5rem; color: var(--white); margin-bottom: 8px; letter-spacing: 1px; }
+.menu-card ul { list-style: none; margin-bottom: 8px; }
+.menu-card li { padding: 5px 0; border-bottom: 1px dashed rgba(255,255,255,.14); font-weight: 600; overflow-wrap: break-word; }
+.menu-card li:last-child { border-bottom: none; }
+.menu-card em { color: var(--gold); font-style: normal; font-size: .85em; }
+.kid-note {
+  margin-top: 26px; text-align: center; font-weight: 600; max-width: 760px;
+  background: rgba(255,215,0,.12); border: 1px dashed var(--gold);
+  padding: 12px 18px; border-radius: 12px; position: relative; z-index: 4;
+}
+.float-marg {
+  position: absolute; right: -10px; bottom: -10px; width: min(34vw, 220px);
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.5)); opacity: .96;
+  animation: floaty 5s ease-in-out infinite; z-index: 2; pointer-events: none;
+}
+
+/* ============================================================
+   ASSIGNMENTS
+   ============================================================ */
+.cards {
+  display: grid; gap: 22px; width: 100%; max-width: 1000px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  position: relative; z-index: 4;
+}
+.family-card {
+  background: linear-gradient(180deg, rgba(191,10,48,.92), rgba(120,6,30,.92));
+  border: 3px solid var(--gold); border-radius: 18px; padding: 26px 22px;
+  text-align: center; box-shadow: 0 8px 26px rgba(0,0,0,.5);
+  transition: transform .2s;
+}
+.family-card:hover { transform: translateY(-6px) scale(1.02); }
+.family-card .emoji { font-size: 3.4rem; line-height: 1; margin-bottom: 6px; }
+.family-card h3 { font-size: 1.7rem; color: var(--white); margin-bottom: 10px; }
+.family-card p { font-weight: 600; margin-bottom: 6px; overflow-wrap: break-word; }
+.family-card .es { display: block; margin-top: 4px; }
+
+/* ============================================================
+   SCHEDULE
+   ============================================================ */
+.timeline {
+  width: 100%; max-width: 760px; position: relative; z-index: 4;
+  border-left: 4px solid var(--gold); margin-left: 10px;
+}
+.t-item {
+  position: relative; padding: 14px 16px 14px 28px; margin-bottom: 6px;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.t-item::before {
+  content: ''; position: absolute; left: -12px; top: 20px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--red-bright); border: 3px solid var(--gold);
+  box-shadow: 0 0 10px rgba(255,215,0,.6);
+}
+.t-time {
+  font-family: 'Bebas Neue'; font-size: 1.3rem; color: var(--gold);
+  min-width: 84px; letter-spacing: 1px;
+}
+.t-desc { font-weight: 600; line-height: 1.35; overflow-wrap: break-word; min-width: 0; }
+.t-item.dump {
+  background: rgba(191,10,48,.3); border: 2px dashed var(--gold); border-radius: 12px;
+}
+.t-item.dump .t-desc { font-family: 'Anton'; font-size: 1.25rem; color: var(--white); letter-spacing: 1px; }
+
+/* ============================================================
+   PLAYLIST
+   ============================================================ */
+.playlist-grid {
+  display: grid; gap: 22px; width: 100%; max-width: 1000px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  position: relative; z-index: 4;
+}
+.pl-col {
+  background: rgba(0,25,60,.72); border: 2px solid var(--gold);
+  border-radius: 14px; padding: 20px;
+}
+.pl-col h3 { color: var(--gold); margin-bottom: 12px; font-size: 1.2rem; }
+.pl-col ul { list-style: none; }
+.pl-col li { padding: 7px 0; border-bottom: 1px dashed rgba(255,255,255,.14); font-weight: 600; }
+.pl-col li:last-child { border-bottom: none; }
+#spotify-embed { margin-top: 26px; width: 100%; max-width: 680px; }
+#spotify-embed iframe { border-radius: 12px; width: 100%; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.section-footer { text-align: center; }
+.footer-crab { width: min(40vw, 180px); margin-bottom: 14px; animation: bob 2.6s ease-in-out infinite; filter: drop-shadow(0 0 22px rgba(255,215,0,.4)); }
+.section-footer h2 { font-size: clamp(2rem,7vw,3.4rem); }
+.big-es { font-family: 'Bebas Neue'; letter-spacing: 2px; color: var(--gold); font-size: clamp(1.2rem,4vw,1.8rem); margin: 8px 0; }
+.addr { font-weight: 600; opacity: .85; margin-bottom: 18px; }
+#replay-btn {
+  font-family: 'Bebas Neue'; letter-spacing: 1px; font-size: 1.1rem;
+  background: rgba(191,10,48,.85); color: #fff; border: 2px solid var(--gold);
+  border-radius: 999px; padding: 10px 22px; cursor: pointer; transition: transform .15s;
+}
+#replay-btn:hover { transform: scale(1.05); }
+
+/* ============================================================
+   KEYFRAMES
+   ============================================================ */
+@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@keyframes floaty { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-16px) rotate(1deg); } }
+@keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
+@keyframes pulseBtn { 0%,100% { box-shadow: 0 0 28px rgba(191,10,48,.7), inset 0 0 12px rgba(255,255,255,.2);} 50% { box-shadow: 0 0 44px rgba(255,215,0,.85), inset 0 0 12px rgba(255,255,255,.3);} }
+@keyframes jetsFly { 0% { left: -40%; } 100% { left: 120%; } }
+@keyframes eagleIn {
+  0% { width: 0; opacity: 0; transform: translate(-50%,-50%) scale(.2); }
+  70% { width: min(80vw,520px); opacity: 1; transform: translate(-50%,-50%) scale(1.08); }
+  100% { width: min(72vw,480px); opacity: 1; transform: translate(-50%,-50%) scale(1); }
+}
+@keyframes wipeAcross {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; scroll-behavior: auto !important; }
+}
+
+/* ============================================================
+   MOBILE TWEAKS
+   ============================================================ */
+@media (max-width: 600px) {
+  .section { padding: 64px 14px 48px; }
+  .hero-eagle { margin-bottom: -10%; }
+  .float-marg { width: 40vw; opacity: .85; }
+  .t-time { min-width: 70px; font-size: 1.1rem; }
+}
