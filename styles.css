@@ -222,6 +222,7 @@ h1, h2, h3 { font-family: 'Anton', 'Bebas Neue', sans-serif; letter-spacing: 1px
 .family-card .emoji { font-size: 3.4rem; line-height: 1; margin-bottom: 6px; }
 .family-card h3 { font-size: 1.7rem; color: var(--white); margin-bottom: 10px; }
 .family-card p { font-weight: 600; margin-bottom: 6px; overflow-wrap: break-word; }
+.family-card .done-note { font-size: .82em; font-weight: 700; color: var(--gold); opacity: .92; margin-top: 8px; }
 .family-card .es { display: block; margin-top: 4px; }
 
 /* ============================================================
